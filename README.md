@@ -1,6 +1,80 @@
 # Scott Meyers - Effective C++ 3rd Edition
 Effective C++: 55 Specific Ways to Improve Your Programs and Designs 3rd Edition. *If you enjoy these notes and examples, please [purchase the book](http://www.amazon.com/Effective-Specific-Improve-Programs-Designs/dp/0321334876)!*
 
+
+<!-- TOC -->
+
+- [Scott Meyers - Effective C++ 3rd Edition](#scott-meyers---effective-c-3rd-edition)
+    - [Chapter 1: Accustoming Yourself to C++](#chapter-1-accustoming-yourself-to-c)
+        - [Item 1: View C++ as a federation of languages.](#item-1-view-c-as-a-federation-of-languages)
+        - [Item 2: Prefer consts, enums, and inlines to #defines.](#item-2-prefer-consts-enums-and-inlines-to-defines)
+        - [Item 3: Use const whenever possible.](#item-3-use-const-whenever-possible)
+        - [Item 4: Make sure that objects are initialized before they’re used.](#item-4-make-sure-that-objects-are-initialized-before-theyre-used)
+    - [Chapter 2: Constructors, Destructors, and Assignment Operators](#chapter-2-constructors-destructors-and-assignment-operators)
+        - [Item 5: Know what functions C++ silently writes and calls.](#item-5-know-what-functions-c-silently-writes-and-calls)
+        - [Item 6: Explicitly disallow the use of compilergenerated functions you do not want.](#item-6-explicitly-disallow-the-use-of-compilergenerated-functions-you-do-not-want)
+        - [Item 7: Declare destructors virtual in polymorphic base classes.](#item-7-declare-destructors-virtual-in-polymorphic-base-classes)
+        - [Item 8: Prevent exceptions from leaving destructors.](#item-8-prevent-exceptions-from-leaving-destructors)
+        - [Item 9: Never call virtual functions during construction or destruction.](#item-9-never-call-virtual-functions-during-construction-or-destruction)
+        - [Item 10: Have assignment operators return a reference to *this.](#item-10-have-assignment-operators-return-a-reference-to-this)
+        - [Item 11: Handle assignment to self in operator=.](#item-11-handle-assignment-to-self-in-operator)
+        - [Item 12: Copy all parts of an object.](#item-12-copy-all-parts-of-an-object)
+    - [Chapter 3: Resource Management](#chapter-3-resource-management)
+        - [Item 13: Use objects to manage resources.](#item-13-use-objects-to-manage-resources)
+        - [Item 14: Think carefully about copying behavior in resource-managing classes.](#item-14-think-carefully-about-copying-behavior-in-resource-managing-classes)
+        - [Item 15: Provide access to raw resources in resourcemanaging classes.](#item-15-provide-access-to-raw-resources-in-resourcemanaging-classes)
+        - [Item 16: Use the same form in corresponding uses of new and delete.](#item-16-use-the-same-form-in-corresponding-uses-of-new-and-delete)
+        - [Item 17: Store newed objects in smart pointers in standalone statements.](#item-17-store-newed-objects-in-smart-pointers-in-standalone-statements)
+    - [Chapter 4: Designs and Declarations](#chapter-4-designs-and-declarations)
+        - [Item 18: Make interfaces easy to use correctly and hard to use incorrectly.](#item-18-make-interfaces-easy-to-use-correctly-and-hard-to-use-incorrectly)
+        - [Item 19: Treat class design as type design.](#item-19-treat-class-design-as-type-design)
+        - [Item 20: Prefer pass-by-reference-to-const to pass-by value.](#item-20-prefer-pass-by-reference-to-const-to-pass-by-value)
+        - [Item 21: Don’t try to return a reference when you must return an object.](#item-21-dont-try-to-return-a-reference-when-you-must-return-an-object)
+        - [Item 22: Declare data members private.](#item-22-declare-data-members-private)
+        - [Item 23: Prefer non-member non-friend functions to member functions.](#item-23-prefer-non-member-non-friend-functions-to-member-functions)
+        - [Item 24: Declare non-member functions when type conversions should apply to all parameters.](#item-24-declare-non-member-functions-when-type-conversions-should-apply-to-all-parameters)
+        - [Item 25: Consider support for a non-throwing swap.](#item-25-consider-support-for-a-non-throwing-swap)
+    - [Chapter 5: Implementations](#chapter-5-implementations)
+        - [Item 26: Postpone variable definitions as long as possible.](#item-26-postpone-variable-definitions-as-long-as-possible)
+        - [Item 27: Minimize casting.](#item-27-minimize-casting)
+        - [Item 28: Avoid returning “handles” to object internals.](#item-28-avoid-returning-handles-to-object-internals)
+        - [Item 29: Strive for exception-safe code.](#item-29-strive-for-exception-safe-code)
+        - [Item 30: Understand the ins and outs of inlining.](#item-30-understand-the-ins-and-outs-of-inlining)
+    - [Chapter 6: Inheritance and Object-Oriented Design](#chapter-6-inheritance-and-object-oriented-design)
+        - [Item 32: Make sure public inheritance models “is-a.”](#item-32-make-sure-public-inheritance-models-is-a)
+        - [Item 33: Avoid hiding inherited names.](#item-33-avoid-hiding-inherited-names)
+        - [Item 34: Differentiate between inheritance of interface and inheritance of implementation.](#item-34-differentiate-between-inheritance-of-interface-and-inheritance-of-implementation)
+        - [Item 35: Consider alternatives to virtual functions.](#item-35-consider-alternatives-to-virtual-functions)
+        - [Item 36: Never redefine an inherited non-virtual function.](#item-36-never-redefine-an-inherited-non-virtual-function)
+        - [Item 37: Never redefine a function’s inherited default parameter value.](#item-37-never-redefine-a-functions-inherited-default-parameter-value)
+        - [Item 38: Model “has-a” or “is-implemented-in-termsof” through composition.](#item-38-model-has-a-or-is-implemented-in-termsof-through-composition)
+        - [Item 39: Use private inheritance judiciously.](#item-39-use-private-inheritance-judiciously)
+        - [Item 40: Use multiple inheritance judiciously.](#item-40-use-multiple-inheritance-judiciously)
+    - [Chapter 7: Templates and Generic Programming](#chapter-7-templates-and-generic-programming)
+        - [Item 41: Understand implicit interfaces and compiletime polymorphism.](#item-41-understand-implicit-interfaces-and-compiletime-polymorphism)
+        - [Item 42: Understand the two meanings of typename.](#item-42-understand-the-two-meanings-of-typename)
+        - [Item 43: Know how to access names in templatized base classes.](#item-43-know-how-to-access-names-in-templatized-base-classes)
+        - [Item 44: Factor parameter-independent code out of templates.](#item-44-factor-parameter-independent-code-out-of-templates)
+        - [Item 45: Use member function templates to accept “all compatible types.”](#item-45-use-member-function-templates-to-accept-all-compatible-types)
+        - [Item 46: Define non-member functions inside templates when type conversions are desired.](#item-46-define-non-member-functions-inside-templates-when-type-conversions-are-desired)
+        - [Item 47: Use traits classes for information about types.](#item-47-use-traits-classes-for-information-about-types)
+        - [Item 48: Be aware of template metaprogramming.](#item-48-be-aware-of-template-metaprogramming)
+    - [Chapter 8: Customizing new and delete](#chapter-8-customizing-new-and-delete)
+        - [Item 49: Understand the behavior of the new-handler.](#item-49-understand-the-behavior-of-the-new-handler)
+        - [Item 50: Understand when it makes sense to replace new and delete.](#item-50-understand-when-it-makes-sense-to-replace-new-and-delete)
+        - [Item 51: Adhere to convention when writing new and delete.](#item-51-adhere-to-convention-when-writing-new-and-delete)
+        - [Item 52: Write placement delete if you write placement new.](#item-52-write-placement-delete-if-you-write-placement-new)
+    - [Chapter 9: Miscellany](#chapter-9-miscellany)
+        - [Item 53: Pay attention to compiler warnings.](#item-53-pay-attention-to-compiler-warnings)
+        - [Item 54: Familiarize yourself with the standard library, including TR1.](#item-54-familiarize-yourself-with-the-standard-library-including-tr1)
+        - [Item 55: Familiarize yourself with Boost.](#item-55-familiarize-yourself-with-boost)
+    - [Reference](#reference)
+
+<!-- /TOC -->
+
+
+
+
 ## Chapter 1: Accustoming Yourself to C++
 
 ### Item 1: View C++ as a federation of languages.
@@ -36,6 +110,8 @@ Things to Remember
 ✦ In a constructor, prefer use of the member initialization list to assignment inside the body of the constructor. List data members in the initialization list in the same order they’re declared in the class.
 
 ✦ Avoid initialization order problems across translation units by replacing non-local static objects with local static objects.
+
+
 
 ## Chapter 2: Constructors, Destructors, and Assignment Operators
 
@@ -95,6 +171,8 @@ Things to Remember
 
 ✦ Don’t try to implement one of the copying functions in terms of the other. Instead, put common functionality in a third function that both call.
 
+
+
 ## Chapter 3: Resource Management
 
 ### Item 13: Use objects to manage resources.
@@ -132,6 +210,8 @@ Things to Remember
 Things to Remember
 
 ✦ Store newed objects in smart pointers in standalone statements. Failure to do this can lead to subtle resource leaks when exceptions are thrown.
+
+
 
 ## Chapter 4: Designs and Declarations
 
@@ -199,6 +279,8 @@ Things to Remember
 
 ✦ It’s fine to totally specialize std templates for user-defined types, but never try to add something completely new to std.
 
+
+
 ## Chapter 5: Implementations
 
 ### Item 26: Postpone variable definitions as long as possible.
@@ -229,19 +311,11 @@ Things to Remember
 
 Things to Remember
 
-✦ Exception-safe functions leak no resources and allow no data structures
+✦ Exception-safe functions leak no resources and allow no data structures to become corrupted, even when exceptions are thrown. Such functions offer the basic, strong, or nothrow guarantees.
 
-to become corrupted, even when exceptions are thrown. Such
+✦ The strong guarantee can often be implemented via copy-and-swap, but the strong guarantee is not practical for all functions.
 
-functions offer the basic, strong, or nothrow guarantees.
-
-✦ The strong guarantee can often be implemented via copy-and-swap,
-
-but the strong guarantee is not practical for all functions.
-
-✦ A function can usually offer a guarantee no stronger than the weakest
-
-guarantee of the functions it calls.
+✦ A function can usually offer a guarantee no stronger than the weakest guarantee of the functions it calls.
 
 ### Item 30: Understand the ins and outs of inlining.
 
@@ -250,6 +324,8 @@ Things to Remember
 ✦ Limit most inlining to small, frequently called functions. This facilitates debugging and binary upgradability, minimizes potential code bloat, and maximizes the chances of greater program speed.
 
 ✦ Don’t declare function templates inline just because they appear in header files.
+
+
 
 ## Chapter 6: Inheritance and Object-Oriented Design
 
@@ -267,7 +343,7 @@ Things to Remember
 
 ✦ To make hidden names visible again, employ using declarations or forwarding functions.
 
-### Item 34: Differentiate between inheritance of interface and  	inheritance of implementation.
+### Item 34: Differentiate between inheritance of interface and inheritance of implementation.
 
 Things to Remember
 
@@ -329,6 +405,8 @@ Things to Remember
 
 ✦ Multiple inheritance does have legitimate uses. One scenario involves combining public inheritance from an Interface class with private inheritance from a class that helps with implementation.
 
+
+
 ## Chapter 7: Templates and Generic Programming
 
 ### Item 41: Understand implicit interfaces and compiletime polymorphism.
@@ -351,3 +429,114 @@ Things to Remember
 
 ### Item 43: Know how to access names in templatized base classes.
 
+Things to Remember
+
+✦ In derived class templates, refer to names in base class templates via a “this->” prefix, via using declarations, or via an explicit base class qualification.
+
+### Item 44: Factor parameter-independent code out of templates.
+
+Things to Remember
+
+✦ Templates generate multiple classes and multiple functions, so any template code not dependent on a template parameter causes bloat.
+
+✦ Bloat due to non-type template parameters can often be eliminated by replacing template parameters with function parameters or class data members.
+
+✦ Bloat due to type parameters can be reduced by sharing implementations for instantiation types with identical binary representations.
+
+### Item 45: Use member function templates to accept “all compatible types.”
+
+Things to Remember
+
+✦ Use member function templates to generate functions that accept all compatible types.
+
+✦ If you declare member templates for generalized copy construction or generalized assignment, you’ll still need to declare the normal copy constructor and copy assignment operator, too.
+
+### Item 46: Define non-member functions inside templates when type conversions are desired.
+
+Things to Remember
+
+✦ When writing a class template that offers functions related to the template that support implicit type conversions on all parameters, define those functions as friends inside the class template.
+
+### Item 47: Use traits classes for information about types.
+
+Things to Remember
+
+✦ Traits classes make information about types available during compilation. They’re implemented using templates and template specializations.
+
+✦ In conjunction with overloading, traits classes make it possible to perform compile-time if...else tests on types.
+
+### Item 48: Be aware of template metaprogramming.
+
+Things to Remember
+
+✦ Template metaprogramming can shift work from runtime to compile time, thus enabling earlier error detection and higher runtime performance.
+
+✦ TMP can be used to generate custom code based on combinations of policy choices, and it can also be used to avoid generating code inappropriate for particular types.
+
+
+
+## Chapter 8: Customizing new and delete
+
+### Item 49: Understand the behavior of the new-handler.
+
+Things to Remember
+
+✦ set_new_handler allows you to specify a function to be called when memory allocation requests cannot be satisfied.
+
+✦ Nothrow new is of limited utility, because it applies only to memory allocation; associated constructor calls may still throw exceptions.
+
+### Item 50: Understand when it makes sense to replace new and delete.
+
+Things to Remember
+
+✦ There are many valid reasons for writing custom versions of new and delete, including improving performance, debugging heap usage errors, and collecting heap usage information.
+
+### Item 51: Adhere to convention when writing new and delete.
+
+Things to Remember
+
+✦ operator new should contain an infinite loop trying to allocate memory, should call the new-handler if it can’t satisfy a memory request, and should handle requests for zero bytes. Class-specific versions should handle requests for larger blocks than expected.
+
+✦ operator delete should do nothing if passed a pointer that is null. Class-specific versions should handle blocks that are larger than expected.
+
+### Item 52: Write placement delete if you write placement new.
+
+Things to Remember
+
+✦ When you write a placement version of operator new, be sure to write the corresponding placement version of operator delete. If you don’t, your program may experience subtle, intermittent memory leaks.
+
+✦ When you declare placement versions of new and delete, be sure not to unintentionally hide the normal versions of those functions.
+
+
+
+## Chapter 9: Miscellany
+
+### Item 53: Pay attention to compiler warnings.
+
+Things to Remember
+
+✦ Take compiler warnings seriously, and strive to compile warningfree at the maximum warning level supported by your compilers.
+
+✦ Don’t become dependent on compiler warnings, because different compilers warn about different things. Porting to a new compiler may eliminate warning messages you’ve come to rely on.
+
+### Item 54: Familiarize yourself with the standard library, including TR1.
+
+Things to Remember
+
+✦ The primary standard C++ library functionality consists of the STL, iostreams, and locales. The C89 standard library is also included.
+
+✦ TR1 adds support for smart pointers (e.g., tr1::shared_ptr), generalized function pointers (tr1::function), hash-based containers, regular expressions, and 10 other components.
+
+✦ TR1 itself is only a specification. To take advantage of TR1, you need an implementation. One source for implementations of TR1 components is Boost.
+
+### Item 55: Familiarize yourself with Boost.
+
+Things to Remember
+
+✦ Boost is a community and web site for the development of free, open source, peer-reviewed C++ libraries. Boost plays an influential role in C++ standardization.
+
+✦ Boost offers implementations of many TR1 components, but it also offers many other libraries, too.
+
+
+
+## Reference
