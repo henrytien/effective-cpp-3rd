@@ -98,6 +98,7 @@ void CTextBlock::test() {
 	print(cctb);
 }
 int main() {
+	std::cout << "Item 3: Use const whenever possible.\n";
 
 	TextBlock tb("Hello");
 	tb.test();

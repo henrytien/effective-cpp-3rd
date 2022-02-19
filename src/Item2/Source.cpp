@@ -23,6 +23,9 @@ void findSize(T(&arr)[n])
 }
 
 int main() {
+
+	std::cout << "Item 2: Prefer consts, enums, and inlines to #defines.\n";
+
 	GamePalyer* player = new GamePalyer;
 	int a[5] = { 1,3,4,5,6 };
 	//int* b = new int[] {3, 4, 45, 5, 6};
