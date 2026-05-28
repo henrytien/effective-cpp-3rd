@@ -1,5 +1,6 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <memory>
+#include <vector>
 class Window { // base class
 public:
 	virtual void onResize() { std::cout << "Call Window onResize." << std::endl; } // base onResize impl
@@ -7,7 +8,7 @@ public:
 class SpecialWindow : public Window { // derived class
 public:
 	virtual void onResize() { // derived onResize impl;
-		// then call its onResize; this doesn¡¯t work!
+		// then call its onResize; this doesnï¿½ï¿½t work!
 		//static_cast<Window>(*this).onResize(); // cast *this to Window,
 		Window::onResize();
 		// do SpecialWindow-

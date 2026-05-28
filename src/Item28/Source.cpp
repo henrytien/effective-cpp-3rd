@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <memory>
 class Point { // class for representing points
 public:
 	Point(int x, int y):x_(x),y_(y){}
@@ -17,8 +18,8 @@ void Point::setY(int newVal) {
 }
 
 struct RectData { // Point data for a Rectangle
-	Point ulhc; // ulhc = ¡° upper left-hand corner¡±
-	Point lrhc; // lrhc = ¡° lower right-hand corner¡±
+	Point ulhc; // ulhc = ï¿½ï¿½ upper left-hand cornerï¿½ï¿½
+	Point lrhc; // lrhc = ï¿½ï¿½ lower right-hand cornerï¿½ï¿½
 };
 class Rectangle {
 public:
@@ -41,7 +42,7 @@ const Rectangle  boundingBox(const GUIObject& obj) {
 
 
 int main() {
-	std::cout << "Item 28: Avoid returning ¡°handles¡± to object internals." << std::endl;
+	std::cout << "Item 28: Avoid returning ï¿½ï¿½handlesï¿½ï¿½ to object internals." << std::endl;
 
 	{
 		// Now consider how a client might use this function:

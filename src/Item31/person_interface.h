@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+#include <string>
 #include "person_impl.h"
 class Person
 {

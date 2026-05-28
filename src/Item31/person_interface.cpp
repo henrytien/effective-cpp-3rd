@@ -1,3 +1,4 @@
+#include <memory>
 #include "person_interface.h"
 std::shared_ptr<Person>  Person::create(const std::string& name, const Date& birthday, const Address& addr) {
 	return std::shared_ptr<Person>(new RealPeson(name, birthday,addr));
