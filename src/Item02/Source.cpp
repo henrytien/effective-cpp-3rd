@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "Header.h"
 
 GamePalyer::GamePalyer() {
