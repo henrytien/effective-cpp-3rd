@@ -9,7 +9,7 @@ class GameCharacter {
   typedef std::function<int(const GameCharacter&)> HealthCalcFunc;
   explicit GameCharacter(HealthCalcFunc hcf = DefaultHealthCalcFunc)
       : health_func_(hcf), health_value_(100) {}
-  virtual int health_value() const;  // return character¡¯s health value;
+  virtual int health_value() const;  // return character's health value;
   int LoseHealth() const { return health_value_ -= 1; }
   int LoseHealthSlowly() const { return health_value_ -= 10; }
   int LoseHealthQuickly() const { return health_value_ -= 20; }

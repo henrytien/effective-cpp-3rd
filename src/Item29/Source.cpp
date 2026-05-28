@@ -63,14 +63,14 @@ private:
 	//int image_changes_; // # of times image has been changed
 	std::shared_ptr<PMImpl> pmlmpl_ptr_;
 };
-// implementation of PrettyMenu¡¯s changeBackground function
+// implementation of PrettyMenu's changeBackground function
 void PrettyMenu::ChangeBackground(std::istream& imgSrc)
 {
 	//{
 	//	Lock ml(&mutex_); // acquire mutex (as in Item 14) 
 
-	//	//replace bgImage¡¯s internal pointer with the result of the
-	//	// ¡°new Image¡± expression
+	//	//replace bgImage's internal pointer with the result of the
+	//	// "new Image" expression
 	//	// Reset function call no exception of swap.
 	//	bgImage_.reset(new Image(imgSrc)); // install new background // If the Image constructor throws an exception,
 	//	++image_changes_; // update image change count

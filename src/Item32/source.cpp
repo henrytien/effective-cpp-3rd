@@ -32,11 +32,11 @@ class Rectangle {
 //  width_ = newWidth;
 //}
 
-void MakeBigger(Rectangle& r)  // function to increase r¡¯s area
+void MakeBigger(Rectangle& r)  // function to increase r's area
 {
   int oldHeight = r.height();
-  r.setWidth(r.width() + 10);     // add 10 to r¡¯s width
-  assert(r.height() == oldHeight);  // assert that r¡¯s
+  r.setWidth(r.width() + 10);     // add 10 to r's width
+  assert(r.height() == oldHeight);  // assert that r's
 }
 
 class Square : public Rectangle {
@@ -63,7 +63,7 @@ void Square::setWidth(int newWidth) {
 
 
 int main() {
-  std::cout << "Item 32: Make sure public inheritance models ¡°is-a.¡±\n";
+  std::cout << "Item 32: Make sure public inheritance models "is-a."\n";
 
   Square s;
   assert(s.width() == s.height());  // this must be true for all squares

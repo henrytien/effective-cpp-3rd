@@ -20,7 +20,7 @@ const char* const MetaSyntacticVariableNames[] = {ShapeColor(MAKE_STRINGS)};
 //
 // class Rectangle : public Shape {
 // public:
-//  // notice the different default parameter value ¡ª bad!
+//  // notice the different default parameter value -- bad!
 //  virtual void draw(ShapeColor color = Green) const {
 //    std::cout << "Call Rectangle draw()"
 //              << " color is " << MetaSyntacticVariableNames[color] <<
@@ -62,7 +62,7 @@ void Rectangle::do_draw(ShapeColor color) const {
 }
 
 int main() {
-  std::cout << "Item 37: Never redefine a function¡¯s inherited default "
+  std::cout << "Item 37: Never redefine a function's inherited default "
                "parameter value.\n";
 
   //{

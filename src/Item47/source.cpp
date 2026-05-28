@@ -37,7 +37,7 @@ namespace henry {
 			iter, d, // of DoAdvance
 			typename // that is
 			std::iterator_traits<IterT>::iterator_category() // appropriate for
-		); // iter¡¯s iterator
+		); // iter's iterator
 	} // category
 }
 

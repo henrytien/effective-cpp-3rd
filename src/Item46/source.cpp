@@ -11,7 +11,7 @@ public:
 	Rational(const T& numerator = 0, // see Item20 for why params
 		const T& denominator = 1); // are now passed by reference
 	const T numerator() const { return n_; } // see Item28 for why return
-	const T denominator() const { return d_; } // values are still passed by value, Item 3 for why they¡¯re const
+	const T denominator() const { return d_; } // values are still passed by value, Item 3 for why they're const
 
 
 	//template<typename T> // Interesting is here.

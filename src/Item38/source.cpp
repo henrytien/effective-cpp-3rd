@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <list>
 
 template <class T>  // the right way to use list for Set
@@ -43,7 +44,7 @@ std::size_t Set<T>::size() const {
 }
 
 int main() {
-  std::cout << "Item 38: Model ¡°has-a¡± or ¡°is-implemented-in-termsof¡± through "
+  std::cout << "Item 38: Model 'has-a' or 'is-implemented-in-terms-of' through "
                "composition.\n";
 
   Set<int> s;

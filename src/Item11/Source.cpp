@@ -30,7 +30,7 @@ public:
 
   //Widget &operator=(Widget rhs) // rhs is a copy of the object
   //{                                     // passed in note pass by val
-  //  Swap(rhs);                  // swap *this¡¯s data with the copy¡¯s
+  //  Swap(rhs);                  // swap *this's data with the copy's
   //  return *this;
   //}
 
