@@ -1,4 +1,5 @@
 // @ts-check
+const {themes} = require('prism-react-renderer');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -76,8 +77,8 @@ const config = {
         copyright: `Copyright ${new Date().getFullYear()} henrytien. Built with Docusaurus.`,
       },
       prism: {
-        theme: require('prism-react-renderer').themes.github,
-        darkTheme: require('prism-react-renderer').themes.dracula,
+        theme: themes.github,
+        darkTheme: themes.dracula,
         additionalLanguages: ['cpp'],
       },
     }),
