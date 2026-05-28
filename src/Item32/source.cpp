@@ -63,7 +63,7 @@ void Square::setWidth(int newWidth) {
 
 
 int main() {
-  std::cout << "Item 32: Make sure public inheritance models "is-a."\n";
+  std::cout << "Item 32: Make sure public inheritance models 'is-a.'\n";
 
   Square s;
   assert(s.width() == s.height());  // this must be true for all squares
