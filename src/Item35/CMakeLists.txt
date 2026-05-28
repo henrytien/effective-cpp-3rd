@@ -1,0 +1,2 @@
+add_item_executable(Item35_classic classic_strategy_pattern.cpp)
+add_item_executable(Item35_function function_strategy_pattern.cpp)

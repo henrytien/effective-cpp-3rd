@@ -2,12 +2,12 @@
 
 class Base { // same as before, but now
 public:      // operator delete is declared
-  static void *operator new(std::size_t size) throw(std::bad_alloc);
-  static void operator delete(void *rawMemory, std::size_t size) throw();
+  static void *operator new(std::size_t size) noexcept(false);
+  static void operator delete(void *rawMemory, std::size_t size) noexcept;
 };
 
-void *Base::operator new(std::size_t size) throw(std::bad_alloc) {
-  // if size is ¡°wrong,¡± have standard operator
+void *Base::operator new(std::size_t size) noexcept(false) {
+  // if size is ï¿½ï¿½wrong,ï¿½ï¿½ have standard operator
   if (size != sizeof(Base))
     return ::operator new(size);
   // new handle the request
@@ -32,10 +32,10 @@ void *Base::operator new(std::size_t size) throw(std::bad_alloc) {
 
   // otherwise handle the request here
 }
-void Base::operator delete(void *rawMemory, std::size_t size) throw() {
+void Base::operator delete(void *rawMemory, std::size_t size) noexcept {
   if (rawMemory == 0)
     return;                       // check for null pointer
-  if (size != sizeof(Base)) {     // if size is ¡°wrong,¡±
+  if (size != sizeof(Base)) {     // if size is ï¿½ï¿½wrong,ï¿½ï¿½
     ::operator delete(rawMemory); // have standard operator
     return;                       // delete handle the request
   }

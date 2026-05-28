@@ -1,6 +1,6 @@
 #include <iostream>
 #include <new>
-// function to call if operator new can¡¯t allocate enough memory
+// function to call if operator new canï¿½ï¿½t allocate enough memory
 void OutOfMem() {
   std::cerr << "Unable to satisfy request for memory\n";
   std::abort();
@@ -21,19 +21,18 @@ private:
   NewHandlerHolder &operator=(const NewHandlerHolder &);
 };
 
-template <typename T>     // ¡°mixin-style¡± base class for
+template <typename T>     // ï¿½ï¿½mixin-styleï¿½ï¿½ base class for
 class NewHandlerSupport { // class-specific set_new_handler
 public:                   // support
-  static std::new_handler set_new_handler(std::new_handler p) throw();
-  static void *operator new(std::size_t size) throw(std::bad_alloc);
-  // other versions of op. new see Item 52
+  static std::new_handler set_new_handler(std::new_handler p) noexcept;
+  static void *operator new(std::size_t size);
 private:
   static std::new_handler current_handler_;
 };
 
 template <typename T>
 std::new_handler
-NewHandlerSupport<T>::set_new_handler(std::new_handler p) throw() {
+NewHandlerSupport<T>::set_new_handler(std::new_handler p) noexcept {
   std::new_handler oldHandler = current_handler_;
   current_handler_ = p;
   return oldHandler;
@@ -41,7 +40,7 @@ NewHandlerSupport<T>::set_new_handler(std::new_handler p) throw() {
 
 template <typename T>
 void *
-NewHandlerSupport<T>::operator new(std::size_t size) throw(std::bad_alloc) {
+NewHandlerSupport<T>::operator new(std::size_t size) {
   NewHandlerHolder h(std::set_new_handler(current_handler_));
   return ::operator new(size);
 }
@@ -51,9 +50,9 @@ std::new_handler NewHandlerSupport<T>::current_handler_ = 0;
 
 class Widget : public NewHandlerSupport<Widget> {
 public:
-  static std::new_handler set_new_handler(std::new_handler p) throw();
-  static void *operator new(std::size_t size) throw(std::bad_alloc);
-  static void *operator new(std::size_t, const std::nothrow_t &) throw();
+  static std::new_handler set_new_handler(std::new_handler p) noexcept;
+  static void *operator new(std::size_t size);
+  static void *operator new(std::size_t, const std::nothrow_t &) noexcept;
 
 private:
   static std::new_handler current_handler_;
@@ -62,19 +61,19 @@ private:
 // Init to null in the class impl.
 std::new_handler Widget::current_handler_ = 0;
 
-std::new_handler Widget::set_new_handler(std::new_handler p) throw() {
+std::new_handler Widget::set_new_handler(std::new_handler p) noexcept {
   std::new_handler old_handler = current_handler_;
   current_handler_ = p;
   return old_handler;
 }
 
-void *Widget::operator new(std::size_t size) throw(std::bad_alloc) {
-  // Install Widget¡¯s new-handler
+void *Widget::operator new(std::size_t size) {
+  // Install Widgetï¿½ï¿½s new-handler
   NewHandlerHolder h(std::set_new_handler(current_handler_));
   return ::operator new(size); // allocate memory or throw
 } // restore global new-handler
 
-void* Widget::operator new(std::size_t size, const std::nothrow_t& nt) throw()
+void* Widget::operator new(std::size_t size, const std::nothrow_t& nt) noexcept
 {
 	return ::operator new(size, nt);
 }
@@ -86,7 +85,7 @@ int main() {
     int *big_data_array = new int[100000000L];
   }
   {
-    Widget::set_new_handler(OutOfMem); // set outOfMem as Widget¡¯s
+    Widget::set_new_handler(OutOfMem); // set outOfMem as Widgetï¿½ï¿½s
     // new-handling function, if memory allocation fails, call outOfMem
 
     Widget *pw1 = new Widget;

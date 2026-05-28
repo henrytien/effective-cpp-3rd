@@ -30,3 +30,26 @@
 *.exe
 *.out
 *.app
+
+# CMake
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.vcxproj
+*.vcxproj.*
+*.sln
+*.suo
+*.user
+
+# Docusaurus
+website/node_modules/
+website/.docusaurus/
+website/build/

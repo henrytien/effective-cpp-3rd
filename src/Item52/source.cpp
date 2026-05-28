@@ -2,25 +2,25 @@
 class StandardNewDeleteForms {
 public:
   // normal new/delete
-  static void *operator new(std::size_t size) throw(std::bad_alloc) {
+  static void *operator new(std::size_t size) noexcept(false) {
     return ::operator new(size);
   }
-  static void operator delete(void *pMemory) throw() {
+  static void operator delete(void *pMemory) noexcept {
     ::operator delete(pMemory);
   }
   // placement new/delete
-  static void *operator new(std::size_t size, void *ptr) throw() {
+  static void *operator new(std::size_t size, void *ptr) noexcept {
     return ::operator new(size, ptr);
   }
-  static void operator delete(void *pMemory, void *ptr) throw() {
+  static void operator delete(void *pMemory, void *ptr) noexcept {
     return ::operator delete(pMemory, ptr);
   }
   // nothrow new/delete
   static void *operator new(std::size_t size,
-                            const std::nothrow_t &nt) throw() {
+                            const std::nothrow_t &nt) noexcept {
     return ::operator new(size, nt);
   }
-  static void operator delete(void *pMemory, const std::nothrow_t &) throw() {
+  static void operator delete(void *pMemory, const std::nothrow_t &) noexcept {
     ::operator delete(pMemory);
   }
 };
@@ -31,14 +31,14 @@ public:
 
   // add a custom placement new
   static void *operator new(std::size_t size,
-                            std::ostream &logStream) throw(std::bad_alloc);
+                            std::ostream &logStream) noexcept(false);
   // add the corresponding placement delete
-  static void operator delete(void *pMemory, std::ostream &logStream) throw();
+  static void operator delete(void *pMemory, std::ostream &logStream) noexcept;
 };
 
 void *Widget::operator new(std::size_t size,
-                           std::ostream &logStream) throw(std::bad_alloc) {
-  // if size is ¡°wrong,¡± have standard operator
+                           std::ostream &logStream) noexcept(false) {
+  // if size is ï¿½ï¿½wrong,ï¿½ï¿½ have standard operator
   if (size != sizeof(Widget))
     return ::operator new(size);
   // new handle the request
@@ -64,7 +64,7 @@ void *Widget::operator new(std::size_t size,
   }
 }
 
-void Widget::operator delete(void *pMemory, std::ostream &logStream) throw() {
+void Widget::operator delete(void *pMemory, std::ostream &logStream) noexcept {
   // check for null pointer
   if (pMemory == 0)
     return;
@@ -78,12 +78,12 @@ class Base {
 public:
   static void *operator new(std::size_t size,        // this new hides
                             std::ostream &logStream) // the normal
-      throw(std::bad_alloc);                         // global forms
+      noexcept(false);                         // global forms
 };
 
 void *Base::operator new(std::size_t size,
-                         std::ostream &logStream) throw(std::bad_alloc) {
-  // if size is ¡°wrong,¡± have standard operator
+                         std::ostream &logStream) noexcept(false) {
+  // if size is ï¿½ï¿½wrong,ï¿½ï¿½ have standard operator
   if (size != sizeof(Base))
     return ::operator new(size);
   // new handle the request
@@ -123,7 +123,7 @@ int main() {
   }
   {
     // Base* pb = new Base; // error! the normal form of operator new is hidden
-    Base *pb = new (std::cerr) Base; // fine, calls Base¡¯s placement new
+    Base *pb = new (std::cerr) Base; // fine, calls Baseï¿½ï¿½s placement new
   }
   return 0;
 }

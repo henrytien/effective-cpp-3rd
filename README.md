@@ -1,6 +1,38 @@
 # Scott Meyers - Effective C++ 3rd Edition
+
 Effective C++: 55 Specific Ways to Improve Your Programs and Designs 3rd Edition. *If you enjoy these notes and examples, please [purchase the book](http://www.amazon.com/Effective-Specific-Improve-Programs-Designs/dp/0321334876)!*
 
+## Building
+
+### Prerequisites
+
+- CMake 3.20+
+- C++20 compiler: MSVC 2022 / GCC 11+ / Clang 14+
+
+### Quick Start
+
+```bash
+cmake -B build
+cmake --build build --config Release
+```
+
+### Generate Visual Studio Solution
+
+```bash
+cmake -B build -G "Visual Studio 17 2022" -A x64
+# Open build/EffectiveCpp3rd.sln
+```
+
+### Build Individual Items
+
+```bash
+cmake -B build -DBUILD_ALL_ITEMS=OFF -DBUILD_ITEM_31=ON
+cmake --build build --config Release
+```
+
+## Documentation
+
+Browse the full documentation at: https://henrytien.github.io/effective-cpp-3rd/
 
 <!-- TOC -->
 

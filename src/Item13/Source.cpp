@@ -14,7 +14,7 @@ public:
   YaWenInvestment() {}
   ~YaWenInvestment() {}
   void AddYaWenInvestment(const int n) { money_ += n; }
-  void Print() { std::cout << "Yawen's money:£¤" << money_ << ".00" << std::endl; }
+  void Print() { std::cout << "Yawen's money:ï¿½ï¿½" << money_ << ".00" << std::endl; }
 
 private:
   static int money_;
@@ -47,15 +47,16 @@ int main() {
   }
 
   {
-    std::auto_ptr<YaWenInvestment> pInv1(
+    // unique_ptr replaces the deprecated auto_ptr
+    // It enforces exclusive ownership via move semantics
+    std::unique_ptr<YaWenInvestment> pInv1(
         (YaWenInvestment *)Investment::CreateInvestment(1));
     std::cout << "pInv1 point to: " << pInv1.get() << std::endl;
-    std::auto_ptr<YaWenInvestment> pInv2(pInv1);
-    std::cout << "pInv1 point to: " << pInv1.get()
-              << std::endl;
+    std::unique_ptr<YaWenInvestment> pInv2(std::move(pInv1));
+    std::cout << "pInv1 point to: " << pInv1.get() << std::endl;
     std::cout << "pInv2 point to: " << pInv2.get() << std::endl;
     pInv2->AddYaWenInvestment(1000000);
-    pInv1 = pInv2;
+    pInv1 = std::move(pInv2);
   }
 
   {

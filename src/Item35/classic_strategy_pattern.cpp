@@ -14,7 +14,7 @@ class GameCharacter {
  public:
   explicit GameCharacter(HealthCalcFunc* hcf)
       : health_func_(hcf), health_value_(100) {}
-  virtual int health_value() const;  // return character¡¯s health value;
+  virtual int health_value() const;  // return characterï¿½ï¿½s health value;
   int LoseHealth() const { return health_value_ -= 1; }
   int LoseHealthSlowly() const { return health_value_ -= 10; }
   int LoseHealthQuickly() const { return health_value_ -= 20; }
@@ -67,13 +67,14 @@ class EyeCandyCharacter : public GameCharacter {  // another character type;
       : GameCharacter(hcf) {}
 };
 
-int test() {
-  // int main() {
-  std::cout << "Item 35: Consider alternatives to virtual functions.\n";
+}  // namespace classic_strategy_pattern
 
-  FastHealthLoser fast;
-  EvilBadGuy ebg3(&fast);
+int main() {
+  std::cout << "Item 35: Consider alternatives to virtual functions.\n";
+  std::cout << "Classic Strategy Pattern:\n";
+
+  classic_strategy_pattern::FastHealthLoser fast;
+  classic_strategy_pattern::EvilBadGuy ebg3(&fast);
   ebg3.health_value();
   return 0;
 }
-}  // namespace classic_strategy_pattern

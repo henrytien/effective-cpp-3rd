@@ -1,6 +1,7 @@
-﻿#include<iostream>
-#include<memory>
-#include<string.h>
+﻿#include <iostream>
+#include <memory>
+#include <cstring>
+#include <cstdio>
 class BorrowableItem { // something a library lets you borrow
 public:
 	void CheckOut(); // check the item out from the library
@@ -93,28 +94,19 @@ const char* PersonInfo::ValueDelimClose() const
 const int kMaxFormattedFieldValueLength = 50;
 const char* PersonInfo::the_name() const
 {
-	// reserve buffer for return value; because this is
-	// static, it’s automatically initialized to all zeros
 	static char value[kMaxFormattedFieldValueLength];
-
-	// write opening delimiter
-	strcpy_s(value, ValueDelimOpen());
-	// append to the string in value this object’s name field(being careful to avoid buffer overruns!)
-	strcat_s(value, pid_.name().c_str());
-	// write closing delimiter
-	strcat_s(value, ValueDelimClose());
+	std::snprintf(value, sizeof(value), "%s%s%s",
+		ValueDelimOpen(), pid_.name().c_str(), ValueDelimClose());
 	return value;
 }
 
 const char* PersonInfo::the_birth_date() const {
 	static char value[kMaxFormattedFieldValueLength];
-
-	strcpy_s(value, ValueDelimOpen());
-	strcat_s(value, pid_.birth_date().c_str());
-	strcat_s(value, ValueDelimClose());
+	std::snprintf(value, sizeof(value), "%s%s%s",
+		ValueDelimOpen(), pid_.birth_date().c_str(), ValueDelimClose());
 	return value;
 }
-const std::string hearts = u8"\U00002665";
+const std::string hearts = "\xE2\x99\xA5";
 class CPerson : public IPerson, private PersonInfo { // note use of MI
 public:
 	explicit CPerson(DatabaseID pid) : PersonInfo(pid) {}
