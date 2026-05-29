@@ -1,6 +1,6 @@
 #include <iostream>
 #include <new>
-// function to call if operator new can��t allocate enough memory
+// function to call if operator new can't allocate enough memory
 void OutOfMem() {
   std::cerr << "Unable to satisfy request for memory\n";
   std::abort();
@@ -21,7 +21,7 @@ class NewHandlerHolder {
   NewHandlerHolder& operator=(const NewHandlerHolder&);
 };
 
-template <typename T>      // ��mixin-style�� base class for
+template <typename T>      // 'mixin-style' base class for
 class NewHandlerSupport {  // class-specific set_new_handler
  public:                   // support
   static std::new_handler set_new_handler(std::new_handler p) noexcept;
@@ -67,7 +67,7 @@ std::new_handler Widget::set_new_handler(std::new_handler p) noexcept {
 }
 
 void* Widget::operator new(std::size_t size) {
-  // Install Widget��s new-handler
+  // Install Widget's new-handler
   NewHandlerHolder h(std::set_new_handler(current_handler_));
   return ::operator new(size);  // allocate memory or throw
 }  // restore global new-handler
@@ -82,7 +82,7 @@ int main() {
     int* big_data_array = new int[100000000L];
   }
   {
-    Widget::set_new_handler(OutOfMem);  // set outOfMem as Widget��s
+    Widget::set_new_handler(OutOfMem);  // set outOfMem as Widget's
     // new-handling function, if memory allocation fails, call outOfMem
 
     Widget* pw1 = new Widget;

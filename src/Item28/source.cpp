@@ -19,8 +19,8 @@ void Point::setY(int newVal) {
 }
 
 struct RectData {  // Point data for a Rectangle
-  Point ulhc;      // ulhc = �� upper left-hand corner��
-  Point lrhc;      // lrhc = �� lower right-hand corner��
+  Point ulhc;      // ulhc = " upper left-hand corner"
+  Point lrhc;      // lrhc = " lower right-hand corner"
 };
 class Rectangle {
  public:
@@ -43,7 +43,7 @@ const Rectangle boundingBox(const GUIObject& obj) {
 }
 
 int main() {
-  std::cout << "Item 28: Avoid returning ��handles�� to object internals." << std::endl;
+  std::cout << "Item 28: Avoid returning 'handles' to object internals." << std::endl;
 
   {
     // Now consider how a client might use this function:

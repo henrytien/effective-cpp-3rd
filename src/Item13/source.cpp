@@ -13,7 +13,7 @@ class YaWenInvestment : public Investment {
   YaWenInvestment() {}
   ~YaWenInvestment() {}
   void AddYaWenInvestment(const int n) { money_ += n; }
-  void Print() { std::cout << "Yawen's money:��" << money_ << ".00" << std::endl; }
+  void Print() { std::cout << "Yawen's money: $" << money_ << ".00" << std::endl; }
 
  private:
   static int money_;

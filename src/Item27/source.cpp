@@ -10,7 +10,7 @@ class Window {  // base class
 class SpecialWindow : public Window {  // derived class
  public:
   virtual void onResize() {  // derived onResize impl;
-    // then call its onResize; this doesn��t work!
+    // then call its onResize; this doesn't work!
     // static_cast<Window>(*this).onResize(); // cast *this to Window,
     Window::onResize();
     // do SpecialWindow-

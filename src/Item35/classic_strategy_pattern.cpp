@@ -13,7 +13,7 @@ class HealthCalcFunc {
 class GameCharacter {
  public:
   explicit GameCharacter(HealthCalcFunc* hcf) : health_func_(hcf), health_value_(100) {}
-  virtual int health_value() const;  // return character��s health value;
+  virtual int health_value() const;  // return character's health value;
   int LoseHealth() const { return health_value_ -= 1; }
   int LoseHealthSlowly() const { return health_value_ -= 10; }
   int LoseHealthQuickly() const { return health_value_ -= 20; }

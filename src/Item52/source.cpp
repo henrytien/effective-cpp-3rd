@@ -31,7 +31,7 @@ class Widget : public StandardNewDeleteForms {  // inherit std forms
 };
 
 void* Widget::operator new(std::size_t size, std::ostream& logStream) noexcept(false) {
-  // if size is ��wrong,�� have standard operator
+  // if size is 'wrong,' have standard operator
   if (size != sizeof(Widget))
     return ::operator new(size);
   // new handle the request
@@ -75,7 +75,7 @@ class Base {
 };
 
 void* Base::operator new(std::size_t size, std::ostream& logStream) noexcept(false) {
-  // if size is ��wrong,�� have standard operator
+  // if size is 'wrong,' have standard operator
   if (size != sizeof(Base))
     return ::operator new(size);
   // new handle the request
@@ -115,7 +115,7 @@ int main() {
   }
   {
     // Base* pb = new Base; // error! the normal form of operator new is hidden
-    Base* pb = new (std::cerr) Base;  // fine, calls Base��s placement new
+    Base* pb = new (std::cerr) Base;  // fine, calls Base's placement new
   }
   return 0;
 }

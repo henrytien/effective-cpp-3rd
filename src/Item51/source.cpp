@@ -7,7 +7,7 @@ class Base {  // same as before, but now
 };
 
 void* Base::operator new(std::size_t size) noexcept(false) {
-  // if size is ��wrong,�� have standard operator
+  // if size is 'wrong,' have standard operator
   if (size != sizeof(Base))
     return ::operator new(size);
   // new handle the request
@@ -35,7 +35,7 @@ void* Base::operator new(std::size_t size) noexcept(false) {
 void Base::operator delete(void* rawMemory, std::size_t size) noexcept {
   if (rawMemory == 0)
     return;                        // check for null pointer
-  if (size != sizeof(Base)) {      // if size is ��wrong,��
+  if (size != sizeof(Base)) {      // if size is 'wrong,'
     ::operator delete(rawMemory);  // have standard operator
     return;                        // delete handle the request
   }
