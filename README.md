@@ -16,6 +16,18 @@ cmake -B build
 cmake --build build --config Release
 ```
 
+### Debug Build
+
+```bash
+# Multi-config generators (Visual Studio, Xcode)
+cmake -B build
+cmake --build build --config Debug
+
+# Single-config generators (Make, Ninja)
+cmake -B build -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
+```
+
 ### Generate Visual Studio Solution
 
 ```bash
@@ -572,3 +584,8 @@ Things to Remember
 
 
 ## Reference
+
+- [Effective C++ 3rd Edition](http://www.amazon.com/Effective-Specific-Improve-Programs-Designs/dp/0321334876) by Scott Meyers (Addison-Wesley, 2005)
+- [C++ Reference](https://en.cppreference.com/)
+- [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
+- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)

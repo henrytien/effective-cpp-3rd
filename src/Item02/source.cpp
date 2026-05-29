@@ -3,16 +3,16 @@
 
 #include "header.h"
 
-GamePalyer::GamePalyer() {
+GamePlayer::GamePlayer() {
   b = new int[5]{4, 5, 67, 7};
   memset(scores, 0, sizeof(scores));
 }
 
-GamePalyer::~GamePalyer() {
+GamePlayer::~GamePlayer() {
   delete b;
 }
 
-void GamePalyer::update_score(int a[], int n) {
+void GamePlayer::update_score(int a[], int n) {
   for (int i = 0; i < n; ++i) {
     scores[i] = a[i];
   }
@@ -25,7 +25,7 @@ void findSize(T (&arr)[n]) {
 int main() {
   std::cout << "Item 2: Prefer consts, enums, and inlines to #defines.\n";
 
-  GamePalyer* player = new GamePalyer;
+  GamePlayer* player = new GamePlayer;
   int a[5] = {1, 3, 4, 5, 6};
   // int* b = new int[] {3, 4, 45, 5, 6};
   findSize(a);

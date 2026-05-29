@@ -1,8 +1,8 @@
-#include "webbrower.h"
+#include "webbrowser.h"
 
 #include <iostream>
 
-#include "webbrowerbookmarks.h"
+#include "webbrowser_bookmarks.h"
 namespace WebBrowserStuff {
 
 void WebBrowser::ClearCache() {

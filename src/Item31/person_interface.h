@@ -13,11 +13,11 @@ class Person {
                                         const Address& addr);
 };
 
-class RealPeson : public Person {
+class RealPerson : public Person {
  public:
-  RealPeson(const std::string& name, const Date& birthday, const Address& addr)
+  RealPerson(const std::string& name, const Date& birthday, const Address& addr)
       : name_(name), birthdate_(birthday), address_(addr) {}
-  ~RealPeson() {}
+  ~RealPerson() {}
 
   std::string name() const;
   std::string birth_date() const;

@@ -40,7 +40,7 @@ void DoProcessing(T& w) {
 }
 
 int main() {
-  std::cout << "Item 41: Understand implicit interfaces and compiletime polymorphism.\n";
+  std::cout << "Item 41: Understand implicit interfaces and compile-time polymorphism.\n";
 
   Widget t;
   DoProcessing<Widget>(t);

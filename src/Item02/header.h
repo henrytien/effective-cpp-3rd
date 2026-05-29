@@ -1,9 +1,9 @@
 #pragma once
 
-class GamePalyer {
+class GamePlayer {
  public:
-  GamePalyer();
-  ~GamePalyer();
+  GamePlayer();
+  ~GamePlayer();
   int* get_score() { return scores; }
   void update_score(int a[], int n);
 
