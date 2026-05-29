@@ -19,8 +19,8 @@ bool ElectronicGadget::CheckOut() const {
   return true;
 }
 
-class MP3Player :                          // note MI here
-                   public BorrowableItem,  // (some libraries loan MP3 players)
+class MP3Player :                               // note MI here
+                   public BorrowableItem,       // (some libraries loan MP3 players)
                    public ElectronicGadget {};  // class definition is unimportant
 
 class IPerson {

@@ -72,7 +72,7 @@ void PrettyMenu::ChangeBackground(std::istream& imgSrc) {
   //	// "new Image" expression
   //	// Reset function call no exception of swap.
   //	bgImage_.reset(new Image(imgSrc)); // install new background // If the Image constructor
-  //throws an exception,
+  // throws an exception,
   //	++image_changes_; // update image change count
   //}
   using std::swap;
