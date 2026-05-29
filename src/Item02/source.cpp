@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include "Header.h"
+#include "header.h"
 
 GamePalyer::GamePalyer() {
 	b = new int[5]{ 4,5,67,7 };
