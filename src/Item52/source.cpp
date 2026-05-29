@@ -1,51 +1,44 @@
 #include <iostream>
 class StandardNewDeleteForms {
-public:
+ public:
   // normal new/delete
-  static void *operator new(std::size_t size) noexcept(false) {
-    return ::operator new(size);
-  }
-  static void operator delete(void *pMemory) noexcept {
-    ::operator delete(pMemory);
-  }
+  static void* operator new(std::size_t size) noexcept(false) { return ::operator new(size); }
+  static void operator delete(void* pMemory) noexcept { ::operator delete(pMemory); }
   // placement new/delete
-  static void *operator new(std::size_t size, void *ptr) noexcept {
+  static void* operator new(std::size_t size, void* ptr) noexcept {
     return ::operator new(size, ptr);
   }
-  static void operator delete(void *pMemory, void *ptr) noexcept {
+  static void operator delete(void* pMemory, void* ptr) noexcept {
     return ::operator delete(pMemory, ptr);
   }
   // nothrow new/delete
-  static void *operator new(std::size_t size,
-                            const std::nothrow_t &nt) noexcept {
+  static void* operator new(std::size_t size, const std::nothrow_t& nt) noexcept {
     return ::operator new(size, nt);
   }
-  static void operator delete(void *pMemory, const std::nothrow_t &) noexcept {
+  static void operator delete(void* pMemory, const std::nothrow_t&) noexcept {
     ::operator delete(pMemory);
   }
 };
-class Widget : public StandardNewDeleteForms { // inherit std forms
-public:
-  using StandardNewDeleteForms::operator new;    // make those
-  using StandardNewDeleteForms::operator delete; // forms visible
+class Widget : public StandardNewDeleteForms {  // inherit std forms
+ public:
+  using StandardNewDeleteForms::operator new;     // make those
+  using StandardNewDeleteForms::operator delete;  // forms visible
 
   // add a custom placement new
-  static void *operator new(std::size_t size,
-                            std::ostream &logStream) noexcept(false);
+  static void* operator new(std::size_t size, std::ostream& logStream) noexcept(false);
   // add the corresponding placement delete
-  static void operator delete(void *pMemory, std::ostream &logStream) noexcept;
+  static void operator delete(void* pMemory, std::ostream& logStream) noexcept;
 };
 
-void *Widget::operator new(std::size_t size,
-                           std::ostream &logStream) noexcept(false) {
+void* Widget::operator new(std::size_t size, std::ostream& logStream) noexcept(false) {
   // if size is ��wrong,�� have standard operator
   if (size != sizeof(Widget))
     return ::operator new(size);
   // new handle the request
-  using namespace std; // take additional params
-  if (size == 0) {     // handle 0-byte requests
-    size = 1;          // by treating them as
-  }                    // 1-byte requests
+  using namespace std;  // take additional params
+  if (size == 0) {      // handle 0-byte requests
+    size = 1;           // by treating them as
+  }  // 1-byte requests
   while (true) {
     // attempt to allocate size bytes;
     auto p = ::operator new(size);
@@ -64,7 +57,7 @@ void *Widget::operator new(std::size_t size,
   }
 }
 
-void Widget::operator delete(void *pMemory, std::ostream &logStream) noexcept {
+void Widget::operator delete(void* pMemory, std::ostream& logStream) noexcept {
   // check for null pointer
   if (pMemory == 0)
     return;
@@ -75,22 +68,21 @@ void Widget::operator delete(void *pMemory, std::ostream &logStream) noexcept {
 }
 
 class Base {
-public:
-  static void *operator new(std::size_t size,        // this new hides
-                            std::ostream &logStream) // the normal
-      noexcept(false);                         // global forms
+ public:
+  static void* operator new(std::size_t size,         // this new hides
+                            std::ostream& logStream)  // the normal
+      noexcept(false);                                // global forms
 };
 
-void *Base::operator new(std::size_t size,
-                         std::ostream &logStream) noexcept(false) {
+void* Base::operator new(std::size_t size, std::ostream& logStream) noexcept(false) {
   // if size is ��wrong,�� have standard operator
   if (size != sizeof(Base))
     return ::operator new(size);
   // new handle the request
-  using namespace std; // take additional params
-  if (size == 0) {     // handle 0-byte requests
-    size = 1;          // by treating them as
-  }                    // 1-byte requests
+  using namespace std;  // take additional params
+  if (size == 0) {      // handle 0-byte requests
+    size = 1;           // by treating them as
+  }  // 1-byte requests
   while (true) {
     // attempt to allocate size bytes;
     auto p = ::operator new(size);
@@ -118,12 +110,12 @@ int main() {
     // call operator new, passing cerr as
     // the ostream; this leaks memory
     // if the Widget constructor throws
-    Widget *pw = new (std::cerr) Widget;
-    delete pw; // invokes the normal  operator delete
+    Widget* pw = new (std::cerr) Widget;
+    delete pw;  // invokes the normal  operator delete
   }
   {
     // Base* pb = new Base; // error! the normal form of operator new is hidden
-    Base *pb = new (std::cerr) Base; // fine, calls Base��s placement new
+    Base* pb = new (std::cerr) Base;  // fine, calls Base��s placement new
   }
   return 0;
 }

@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 class B {
  public:
   virtual ~B() { std::cout << "Call B::~B()\n"; };
@@ -10,7 +10,6 @@ class D : public B {
   virtual ~D() { std::cout << "Call D::~D()\n"; };
 };
 
-
 int main() {
   std::cout << "Item 36: Never redefine an inherited non-virtual function.\n";
   {
@@ -18,7 +17,7 @@ int main() {
     B* pb = &x;
     pb->mf();
   }
- 
+
   {
     D x;
     D* pd = &x;

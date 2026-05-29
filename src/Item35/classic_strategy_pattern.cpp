@@ -12,8 +12,7 @@ class HealthCalcFunc {
 };
 class GameCharacter {
  public:
-  explicit GameCharacter(HealthCalcFunc* hcf)
-      : health_func_(hcf), health_value_(100) {}
+  explicit GameCharacter(HealthCalcFunc* hcf) : health_func_(hcf), health_value_(100) {}
   virtual int health_value() const;  // return character��s health value;
   int LoseHealth() const { return health_value_ -= 1; }
   int LoseHealthSlowly() const { return health_value_ -= 10; }
@@ -56,12 +55,11 @@ class FastHealthLoser : public HealthCalcFunc {
 
 class EvilBadGuy : public GameCharacter {
  public:
-  explicit EvilBadGuy(HealthCalcFunc* hcf /*= DefaultHealthCalcFunc*/)
-      : GameCharacter(hcf) {}
+  explicit EvilBadGuy(HealthCalcFunc* hcf /*= DefaultHealthCalcFunc*/) : GameCharacter(hcf) {}
 };
 
 class EyeCandyCharacter : public GameCharacter {  // another character type;
-  // assume same constructor as EvilBadGuy
+                                                  // assume same constructor as EvilBadGuy
  public:
   explicit EyeCandyCharacter(HealthCalcFunc* hcf /*= DefaultHealthCalcFunc*/)
       : GameCharacter(hcf) {}

@@ -1,6 +1,6 @@
 #include <iostream>
 class TimeKeeper {
-public:
+ public:
   TimeKeeper() {}
   virtual ~TimeKeeper() {}
 };
@@ -9,7 +9,7 @@ class WaterClock : public TimeKeeper {};
 class WristWatch : public TimeKeeper {};
 
 class AWOW {
-public:
+ public:
   virtual void fun() = 0;
   virtual ~AWOW() = 0;
 };

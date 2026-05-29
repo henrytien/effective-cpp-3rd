@@ -44,16 +44,14 @@ class Shape {
   }
 
  private:
-  virtual void do_draw(
-      ShapeColor color) const = 0;  // the actual work is done in this func
+  virtual void do_draw(ShapeColor color) const = 0;  // the actual work is done in this func
 };
 class Rectangle : public Shape {
  public:
   void draw(ShapeColor color = Green) const { do_draw(color); }
 
  private:
-  virtual void do_draw(
-      ShapeColor color) const;  // note lack of a default param val.
+  virtual void do_draw(ShapeColor color) const;  // note lack of a default param val.
 };
 
 void Rectangle::do_draw(ShapeColor color) const {
@@ -75,9 +73,9 @@ int main() {
   //}
 
   {
-      Shape* ps;                  // static type = Shape*
-      Shape* pr = new Rectangle;  // static type = Shape*
-      pr->draw(Shape::Green);
+    Shape* ps;                  // static type = Shape*
+    Shape* pr = new Rectangle;  // static type = Shape*
+    pr->draw(Shape::Green);
   }
   return 0;
 }

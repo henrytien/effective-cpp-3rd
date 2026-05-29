@@ -1,7 +1,7 @@
 #include <iostream>
 #include <utility>
 struct Bitmap {
-public:
+ public:
   /* Bitmap(const int n, const std::string &s) {
      this->num = n;
      this->str = s;
@@ -11,9 +11,9 @@ public:
 };
 
 class Widget {
-public:
-  Widget(const Bitmap &bitmap) : bitmap_(const_cast<Bitmap *>(&bitmap)){};
-  Widget &operator=(const Widget &rhs) {
+ public:
+  Widget(const Bitmap& bitmap) : bitmap_(const_cast<Bitmap*>(&bitmap)) {};
+  Widget& operator=(const Widget& rhs) {
     /* if (this == &rhs)
      {
        return *this;
@@ -28,31 +28,31 @@ public:
     return *this;
   }
 
-  //Widget &operator=(Widget rhs) // rhs is a copy of the object
+  // Widget &operator=(Widget rhs) // rhs is a copy of the object
   //{                                     // passed in note pass by val
-  //  Swap(rhs);                  // swap *this's data with the copy's
-  //  return *this;
-  //}
+  //   Swap(rhs);                  // swap *this's data with the copy's
+  //   return *this;
+  // }
 
-  void Swap(Widget &rhs) {
-    Bitmap *orig = new Bitmap();
+  void Swap(Widget& rhs) {
+    Bitmap* orig = new Bitmap();
     orig->num = rhs.bitmap_->num;
     orig->str = rhs.bitmap_->str;
     this->bitmap_ = orig;
   }
 
-private:
-  Bitmap *bitmap_;
+ private:
+  Bitmap* bitmap_;
 };
 
 int main() {
   std::cout << "Item 11: Handle assignment to self in operator=." << std::endl;
-  Bitmap *b = new Bitmap();
+  Bitmap* b = new Bitmap();
   b->num = 1;
   b->str = "YawenChen";
   Widget wid(*b);
 
-  Bitmap *a = new Bitmap();
+  Bitmap* a = new Bitmap();
   a->num = 1;
   a->str = "HangyuTian";
   Widget wid2(*a);

@@ -33,15 +33,14 @@ class Widget {
                 << "\"I love yawen so much!\"" << std::endl;
       return;
     }
-    std::cout << name_ << " love score is " << score_ << ", message is \""
-              << widget_ptr_->get_a() << " " << widget_ptr_->get_b() << " "
-              << widget_ptr_->get_c() << "\"" << std::endl;
+    std::cout << name_ << " love score is " << score_ << ", message is \"" << widget_ptr_->get_a()
+              << " " << widget_ptr_->get_b() << " " << widget_ptr_->get_c() << "\"" << std::endl;
     std::cout << "I want to tell you: \"";
     std::string str;
     for (auto&& iter : widget_ptr_->get_v()) {
       str += iter + " ";
     }
-    str.erase(str.end()-1);
+    str.erase(str.end() - 1);
     str += "\"";
     std::cout << str << std::endl;
   }
@@ -58,9 +57,7 @@ Widget<T>::Widget(const std::string& name, const T& n, WidgetImpl<T>* p)
 
 template <typename T>
 Widget<T>::Widget(const Widget& rhs)
-    : name_(std::move(rhs.name_)),
-      score_(rhs.score_),
-      widget_ptr_(rhs.widget_ptr_) {}
+    : name_(std::move(rhs.name_)), score_(rhs.score_), widget_ptr_(rhs.widget_ptr_) {}
 
 template <typename T>
 Widget<T>& Widget<T>::operator=(const Widget& rhs) {
@@ -85,8 +82,8 @@ void Widget<T>::swap(Widget& other) {
 }  // namespace WidgetStuff
 
 int main() {
-  //std::cout << "Item 25: Consider support for a non-throwing swap."
-  //          << std::endl;
+  // std::cout << "Item 25: Consider support for a non-throwing swap."
+  //           << std::endl;
 
   std::vector<std::string> chenyawen = {"I", "love", "yawen", "too"};
   WidgetStuff::WidgetImpl<std::string>* yawen_data =

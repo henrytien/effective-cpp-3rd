@@ -61,15 +61,13 @@ class GameLevel {
 
 class EvilBadGuy : public GameCharacter {
  public:
-  explicit EvilBadGuy(HealthCalcFunc hcf = DefaultHealthCalcFunc)
-      : GameCharacter(hcf) {}
+  explicit EvilBadGuy(HealthCalcFunc hcf = DefaultHealthCalcFunc) : GameCharacter(hcf) {}
 };
 
 class EyeCandyCharacter : public GameCharacter {  // another character type;
-  // assume same constructor as EvilBadGuy
+                                                  // assume same constructor as EvilBadGuy
  public:
-  explicit EyeCandyCharacter(HealthCalcFunc hcf = DefaultHealthCalcFunc)
-      : GameCharacter(hcf) {}
+  explicit EyeCandyCharacter(HealthCalcFunc hcf = DefaultHealthCalcFunc) : GameCharacter(hcf) {}
 };
 
 int LoseHealthQuicklyFunc(const GameCharacter& gc) {
@@ -88,10 +86,8 @@ int main() {
    int (*q)(int) = &print;*/
 
   GameLevel current_level;
-  GameCharacter game_character(
-      std::bind(&GameLevel::health, current_level, std::placeholders::_1));
-  std::cout << "game_character's level: " << game_character.health_value()
-            << std::endl;
+  GameCharacter game_character(std::bind(&GameLevel::health, current_level, std::placeholders::_1));
+  std::cout << "game_character's level: " << game_character.health_value() << std::endl;
 
   EvilBadGuy ebg1(LoseHealthQuicklyFunc);
   std::cout << "ebg1's health " << ebg1.health_value() << std::endl;
@@ -106,8 +102,7 @@ int main() {
   // calculation function object auto health = HealthCalculator(); std::cout <<
   // "ecc1's health " << health << std::endl;
 
-  EvilBadGuy ebg4(
-      std::bind(&GameLevel::demage, current_level, std::placeholders::_1));
+  EvilBadGuy ebg4(std::bind(&GameLevel::demage, current_level, std::placeholders::_1));
   std::cout << "ebg4's health " << ebg4.health_value() << std::endl;
 
   return 0;

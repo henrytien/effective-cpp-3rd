@@ -1,16 +1,16 @@
 #pragma once
-#include<iostream>
+#include <iostream>
 namespace WebBrowserStuff {
 
-	class WebBookmark
-	{
-	public:
-		WebBookmark():marked_(false){}
-		~WebBookmark(){}
-		void MakeBookmark() {}
-		void ClearBookmark();
-	private:
-		bool marked_;
-	};
+class WebBookmark {
+ public:
+  WebBookmark() : marked_(false) {}
+  ~WebBookmark() {}
+  void MakeBookmark() {}
+  void ClearBookmark();
 
-}
+ private:
+  bool marked_;
+};
+
+}  // namespace WebBrowserStuff

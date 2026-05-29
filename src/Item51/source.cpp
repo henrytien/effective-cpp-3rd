@@ -1,20 +1,20 @@
 #include <iostream>
 
-class Base { // same as before, but now
-public:      // operator delete is declared
-  static void *operator new(std::size_t size) noexcept(false);
-  static void operator delete(void *rawMemory, std::size_t size) noexcept;
+class Base {  // same as before, but now
+ public:      // operator delete is declared
+  static void* operator new(std::size_t size) noexcept(false);
+  static void operator delete(void* rawMemory, std::size_t size) noexcept;
 };
 
-void *Base::operator new(std::size_t size) noexcept(false) {
+void* Base::operator new(std::size_t size) noexcept(false) {
   // if size is ��wrong,�� have standard operator
   if (size != sizeof(Base))
     return ::operator new(size);
   // new handle the request
-  using namespace std; // take additional params
-  if (size == 0) {     // handle 0-byte requests
-    size = 1;          // by treating them as
-  }                    // 1-byte requests
+  using namespace std;  // take additional params
+  if (size == 0) {      // handle 0-byte requests
+    size = 1;           // by treating them as
+  }  // 1-byte requests
   while (true) {
     // attempt to allocate size bytes;
     auto p = ::operator new(size);
@@ -32,12 +32,12 @@ void *Base::operator new(std::size_t size) noexcept(false) {
 
   // otherwise handle the request here
 }
-void Base::operator delete(void *rawMemory, std::size_t size) noexcept {
+void Base::operator delete(void* rawMemory, std::size_t size) noexcept {
   if (rawMemory == 0)
-    return;                       // check for null pointer
-  if (size != sizeof(Base)) {     // if size is ��wrong,��
-    ::operator delete(rawMemory); // have standard operator
-    return;                       // delete handle the request
+    return;                        // check for null pointer
+  if (size != sizeof(Base)) {      // if size is ��wrong,��
+    ::operator delete(rawMemory);  // have standard operator
+    return;                        // delete handle the request
   }
   //	deallocate the memory pointed to by rawMemory;
   ::operator delete(rawMemory);
@@ -45,11 +45,11 @@ void Base::operator delete(void *rawMemory, std::size_t size) noexcept {
 }
 
 class Widget : public Base {
-public:
+ public:
   Widget(int n) : n_(n) {}
   ~Widget() {}
 
-private:
+ private:
   int n_;
 };
 

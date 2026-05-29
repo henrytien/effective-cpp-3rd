@@ -1,33 +1,32 @@
 #include <iostream>
 #include <memory>
 class Investment {
-public:
+ public:
   Investment() {}
   virtual ~Investment() {}
-  static Investment *CreateInvestment(int type);
+  static Investment* CreateInvestment(int type);
   virtual void Print() = 0;
 };
 
 class YaWenInvestment : public Investment {
-
-public:
+ public:
   YaWenInvestment() {}
   ~YaWenInvestment() {}
   void AddYaWenInvestment(const int n) { money_ += n; }
   void Print() { std::cout << "Yawen's money:��" << money_ << ".00" << std::endl; }
 
-private:
+ private:
   static int money_;
 };
 
 int YaWenInvestment::money_;
 
-Investment *Investment::CreateInvestment(int type) {
+Investment* Investment::CreateInvestment(int type) {
   switch (type) {
-  case 1:
-    return new YaWenInvestment;
-  default:
-    break;
+    case 1:
+      return new YaWenInvestment;
+    default:
+      break;
   }
   return nullptr;
 }
@@ -49,8 +48,7 @@ int main() {
   {
     // unique_ptr replaces the deprecated auto_ptr
     // It enforces exclusive ownership via move semantics
-    std::unique_ptr<YaWenInvestment> pInv1(
-        (YaWenInvestment *)Investment::CreateInvestment(1));
+    std::unique_ptr<YaWenInvestment> pInv1((YaWenInvestment*)Investment::CreateInvestment(1));
     std::cout << "pInv1 point to: " << pInv1.get() << std::endl;
     std::unique_ptr<YaWenInvestment> pInv2(std::move(pInv1));
     std::cout << "pInv1 point to: " << pInv1.get() << std::endl;
@@ -60,8 +58,7 @@ int main() {
   }
 
   {
-    std::shared_ptr<YaWenInvestment> pInv3(
-        (YaWenInvestment *)Investment::CreateInvestment(1));
+    std::shared_ptr<YaWenInvestment> pInv3((YaWenInvestment*)Investment::CreateInvestment(1));
     std::cout << "shared_ptr pInv3 point to: " << pInv3.get() << std::endl;
     std::shared_ptr<YaWenInvestment> pInv4(pInv3);
     std::cout << "shared_ptr pInv3 point to: " << pInv3.get() << std::endl;

@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <list>
 
 template <class T>  // the right way to use list for Set
@@ -32,8 +32,7 @@ void Set<T>::insert(const T& item) {
 }
 template <typename T>
 void Set<T>::remove(const T& item) {
-  typename std::list<T>::iterator it =
-      std::find(rep_.begin(), rep_.end(), item);
+  typename std::list<T>::iterator it = std::find(rep_.begin(), rep_.end(), item);
   if (it != rep_.end())
     rep_.erase(it);
 }
@@ -56,7 +55,6 @@ int main() {
   s.insert(11);
   s.insert(12);
 
-  
   s.print();
 
   std::string res = s.member(10) ? "is" : "not is";

@@ -1,49 +1,47 @@
 #include <iostream>
 
-
 class Customer {
-public:
-  Customer():name_("") {}
-  Customer(const Customer &rhs);
-  Customer &operator=(const Customer &rhs);
+ public:
+  Customer() : name_("") {}
+  Customer(const Customer& rhs);
+  Customer& operator=(const Customer& rhs);
 
-private:
+ private:
   std::string name_;
 };
 
-void logCall(const std::string &funcName) {
+void logCall(const std::string& funcName) {
   std::cout << "Called: " << funcName << std::endl;
 }
 
-Customer::Customer(const Customer &rhs) : name_(rhs.name_) {
+Customer::Customer(const Customer& rhs) : name_(rhs.name_) {
   logCall("Customer copy constructor");
 }
 
-Customer &Customer::operator=(const Customer &rhs) {
+Customer& Customer::operator=(const Customer& rhs) {
   logCall("Customer copy assignment operator");
   name_ = rhs.name_;
   return *this;
 }
 
-
 class PriorityCustomer : public Customer {
-public:
-  PriorityCustomer(const int n) :priority_(n){};
-  PriorityCustomer(const PriorityCustomer &rhs);
-  PriorityCustomer &operator=(const PriorityCustomer &rhs);
+ public:
+  PriorityCustomer(const int n) : priority_(n) {};
+  PriorityCustomer(const PriorityCustomer& rhs);
+  PriorityCustomer& operator=(const PriorityCustomer& rhs);
 
-private:
+ private:
   int priority_;
 };
 
-PriorityCustomer::PriorityCustomer(const PriorityCustomer &rhs):Customer(rhs),priority_(rhs.priority_) {
+PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
+    : Customer(rhs), priority_(rhs.priority_) {
   logCall("PriorityCustomer copy constructor");
 }
 
 PriorityCustomer& PriorityCustomer::operator=(const PriorityCustomer& rhs) {
-	
   logCall("PriorityCustomer copy assignment operator");
-  Customer::operator=(rhs);			// assign base class parts.
+  Customer::operator=(rhs);  // assign base class parts.
   priority_ = rhs.priority_;
 
   return *this;
