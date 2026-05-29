@@ -16,6 +16,26 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
+  // SEO: generate sitemap
+  trailingSlash: false,
+
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'keywords',
+        content: 'C++, Effective C++, Scott Meyers, C++20, design patterns, best practices',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'author',
+        content: 'henrytien',
+      },
+    },
+  ],
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -34,6 +54,11 @@ const config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+        },
+        gtag: undefined,
       }),
     ],
   ],
@@ -41,6 +66,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {name: 'description', content: 'Modern C++20 code examples for all 55 items in Effective C++ 3rd Edition by Scott Meyers. Cross-platform CMake build, interactive documentation.'},
+        {property: 'og:image', content: 'https://henrytien.github.io/effective-cpp-3rd/img/og-image.png'},
+      ],
       navbar: {
         title: 'Effective C++',
         items: [
@@ -57,6 +86,16 @@ const config = {
           },
         ],
       },
+      // Algolia DocSearch — uncomment after receiving keys from:
+      // https://docsearch.algolia.com/apply/
+      //
+      // algolia: {
+      //   appId: 'YOUR_APP_ID',
+      //   apiKey: 'YOUR_SEARCH_API_KEY',
+      //   indexName: 'effective-cpp-3rd',
+      //   contextualSearch: true,
+      //   searchPagePath: 'search',
+      // },
       footer: {
         style: 'dark',
         links: [
@@ -79,7 +118,7 @@ const config = {
       prism: {
         theme: themes.github,
         darkTheme: themes.dracula,
-        additionalLanguages: ['cpp'],
+        additionalLanguages: ['cpp', 'cmake', 'bash'],
       },
     }),
 };
