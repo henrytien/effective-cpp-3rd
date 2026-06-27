@@ -91,7 +91,7 @@ const config = {
         apiKey: '1f849676dd7627609cfd6306f279512c',
         indexName: 'effective-cpp-3rd',
         contextualSearch: true,
-        searchPagePath: 'search',
+        searchPagePath: false,
       },
       footer: {
         style: 'dark',
