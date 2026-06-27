@@ -86,16 +86,13 @@ const config = {
           },
         ],
       },
-      // Algolia DocSearch — uncomment after receiving keys from:
-      // https://docsearch.algolia.com/apply/
-      //
-      // algolia: {
-      //   appId: 'YOUR_APP_ID',
-      //   apiKey: 'YOUR_SEARCH_API_KEY',
-      //   indexName: 'effective-cpp-3rd',
-      //   contextualSearch: true,
-      //   searchPagePath: 'search',
-      // },
+      algolia: {
+        appId: 'TWXTCFI8O8',
+        apiKey: '1f849676dd7627609cfd6306f279512c',
+        indexName: 'effective-cpp-3rd',
+        contextualSearch: true,
+        searchPagePath: 'search',
+      },
       footer: {
         style: 'dark',
         links: [
